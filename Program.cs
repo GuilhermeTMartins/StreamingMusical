@@ -1,5 +1,10 @@
 ﻿// Screen Sound
 string boasVindas = "Boas vindas ao Screen Sound";
+//List<string> bandas = new List<string> { "Iron Maiden", "The Strokes", "Linkin Park" };
+
+Dictionary<string, List<int>> bandas = new Dictionary<string, List<int>>();
+bandas.Add("Linkin Park", new List<int> { 10, 9, 10 });
+bandas.Add("Aurora", new List<int>());
 
 
 void ExibirLogo()
@@ -33,13 +38,13 @@ void ExibirOpcoesMenu()
             RegistrarBandas();
             break;
         case 2:
-            Console.WriteLine("Voce escolheu a opcao " + opcaoEscolhidaNum);
+            ExibirBandas();
             break;
         case 3:
-            Console.WriteLine("Voce escolheu a opcao " + opcaoEscolhidaNum);
+            AvaliarBandas();
             break;
         case 4:
-            Console.WriteLine("Voce escolheu a opcao " + opcaoEscolhidaNum);
+            ExibirMediaBandas();
             break;
         case 5:
             Console.WriteLine("Ate logo :3");
@@ -52,13 +57,60 @@ void ExibirOpcoesMenu()
 void RegistrarBandas()
 {
     Console.Clear();
-    Console.WriteLine("Registro de Bandas");
+    Console.WriteLine("Registro de Bandas\n");
     Console.Write("Digite o nome da banda que deseja registrar: ");
     string nomeDaBanda = Console.ReadLine()!;
-    Console.WriteLine($"A banda foi {nomeDaBanda} com sucesso");
+    bandas.Add(nomeDaBanda, new List<int>());
+    Console.WriteLine($"A banda {nomeDaBanda} foi registrada com sucesso!");
     Thread.Sleep(2000);
     Console.Clear();
     ExibirOpcoesMenu();
+}
+
+void ExibirBandas()
+{
+    Console.Clear();
+    Console.WriteLine("Exibindo bandas registradas\n");
+    //for (int i = 0; i < bandas.Count; i++)
+    //{
+    //  Console.WriteLine($"Banda: {bandas[i]}");
+    //}
+
+    foreach (string banda in bandas.Keys)
+    {
+        Console.WriteLine($"Banda: {banda}");
+    }
+
+    Console.WriteLine("\nDigite qualquer tecla para voltar ao Menu");
+    Console.ReadKey();
+    Console.Clear();
+    ExibirOpcoesMenu();
+}
+
+void AvaliarBandas()
+{
+    Console.Clear();
+    Console.WriteLine("Avaliando bandas registradas\n");
+    Console.Write("Digite a banda que deseja avaliar: ");
+    string nomeDaBanda = Console.ReadLine()!;
+    if (bandas.ContainsKey(nomeDaBanda))
+    {
+
+    }
+    else
+    {
+        Console.WriteLine($"A banda {nomeDaBanda} nao foi encontrada");
+        Console.WriteLine("\nDigite qualquer tecla para voltar ao Menu");
+        Console.ReadKey();
+        Console.Clear();
+        ExibirOpcoesMenu();
+    }
+
+}
+
+void ExibirMediaBandas()
+{
+    
 }
 
 ExibirLogo();

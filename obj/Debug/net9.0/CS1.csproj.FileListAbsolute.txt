@@ -12,3 +12,4 @@ C:\Users\Guilherme\Downloads\Estudos\CS1\obj\Debug\net9.0\refint\CS1.dll
 C:\Users\Guilherme\Downloads\Estudos\CS1\obj\Debug\net9.0\CS1.pdb
 C:\Users\Guilherme\Downloads\Estudos\CS1\obj\Debug\net9.0\CS1.genruntimeconfig.cache
 C:\Users\Guilherme\Downloads\Estudos\CS1\obj\Debug\net9.0\ref\CS1.dll
+C:\Users\Guilherme\Downloads\Estudos\CS1\obj\Debug\net9.0\CS1.sourcelink.json
