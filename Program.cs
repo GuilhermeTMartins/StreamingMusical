@@ -1,4 +1,6 @@
 ﻿// Screen Sound
+using System.Net.Http.Headers;
+
 string boasVindas = "Boas vindas ao Screen Sound";
 //List<string> bandas = new List<string> { "Iron Maiden", "The Strokes", "Linkin Park" };
 
@@ -25,8 +27,9 @@ void ExibirOpcoesMenu()
     Console.WriteLine("\nDigite 1 para registrar uma banda");
     Console.WriteLine("Digite 2 para mostrar todas as bandas");
     Console.WriteLine("Digite 3 para avaliar uma banda");
-    Console.WriteLine("Digite 4 para exibir a media de uma banda");
-    Console.WriteLine("Digite 5 para sair");
+    Console.WriteLine("Digite 4 para exibir a média de uma banda");
+    Console.WriteLine("Digite 5 para remover uma banda");
+    Console.WriteLine("Digite 6 para sair");
 
     Console.Write("\nDigite sua opcao: ");
     string opcaoEscolhida = Console.ReadLine()!;
@@ -44,12 +47,16 @@ void ExibirOpcoesMenu()
             AvaliarBandas();
             break;
         case 4:
-            ExibirMediaBandas();
+            ExibirMedia();
             break;
         case 5:
-            Console.WriteLine("Ate logo :3");
+            RemoverBanda();
             break;
-        default: Console.WriteLine("Opcao invalida");
+        case 6:
+            Console.WriteLine("Até logo :3");
+            break;
+        default:
+            Console.WriteLine("Opção inválida");
             break;
     }
 }
@@ -95,23 +102,67 @@ void AvaliarBandas()
     string nomeDaBanda = Console.ReadLine()!;
     if (bandas.ContainsKey(nomeDaBanda))
     {
+        Console.Write($"Qual a nota da banda {nomeDaBanda}: ");
+        int nota = int.Parse(Console.ReadLine()!);
+        bandas[nomeDaBanda].Add(nota);
+        Console.WriteLine("\nNota registrada com sucesso");
+    }
+    else
+    {
+        Console.WriteLine($"A banda {nomeDaBanda} nao foi encontrada");
+    }
+    Console.WriteLine("\nDigite qualquer tecla para voltar ao Menu");
+    Console.ReadKey();
+    Console.Clear();
+    ExibirOpcoesMenu();
+
+}
+
+void ExibirMedia()
+{
+    Console.Clear();
+    Console.WriteLine("Exibindo média das bandas registradas");
+    Console.Write("Digite a banda que deseja ver a media");
+    string nomeDaBanda = Console.ReadLine()!;
+    if (bandas.ContainsKey(nomeDaBanda))
+    {
+        List<int> notasDaBanda = bandas[nomeDaBanda];
+        Console.WriteLine($"A média de {nomeDaBanda} é {notasDaBanda.Average()}");
 
     }
     else
     {
         Console.WriteLine($"A banda {nomeDaBanda} nao foi encontrada");
-        Console.WriteLine("\nDigite qualquer tecla para voltar ao Menu");
-        Console.ReadKey();
-        Console.Clear();
-        ExibirOpcoesMenu();
     }
-
+    Console.WriteLine("\nDigite qualquer tecla para voltar ao Menu");
+    Console.ReadKey();
+    Console.Clear();
+    ExibirOpcoesMenu();
 }
 
-void ExibirMediaBandas()
+void RemoverBanda()
 {
-    
+    Console.Clear();
+    Console.WriteLine("Remoção de Bandas\n");
+    Console.Write("Digite o nome da banda que deseja remover: ");
+    string nomeDaBanda = Console.ReadLine()!;
+
+    if (bandas.ContainsKey(nomeDaBanda))
+    {
+        bandas.Remove(nomeDaBanda);
+        Console.WriteLine($"A banda {nomeDaBanda} foi removida com sucesso!");
+    }
+    else
+    {
+        Console.WriteLine($"A banda {nomeDaBanda} não foi encontrada.");
+    }
+
+    Console.WriteLine("\nDigite qualquer tecla para voltar ao Menu");
+    Console.ReadKey();
+    Console.Clear();
+    ExibirOpcoesMenu();
 }
 
 ExibirLogo();
 ExibirOpcoesMenu();
+
